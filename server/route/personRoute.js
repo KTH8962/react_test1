@@ -50,10 +50,10 @@ router.route("/:id")
           
     })
     .put((req, res) => {
-      const { name, phone, addr } = req.body;
+      const { name, gender, phone, addr } = req.body;
       const id = req.params.id;
-      const query = `UPDATE TBL_PERSON SET name = ?, phone = ?, addr = ? WHERE id = ${id}`;
-      connection.query(query, [name, phone, addr] , (err) => {
+      const query = `UPDATE TBL_PERSON SET name = ?, gender = ?, phone = ?, addr = ? WHERE id = ${id}`;
+      connection.query(query, [name, gender, phone, addr] , (err) => {
         if(err) {
           console.error('수정 실패', err);
           return res.json({ success: false, message: '서버 오류가 발생했습니다.' });

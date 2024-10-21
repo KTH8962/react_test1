@@ -14,15 +14,15 @@ function Pesrson(props) {
     const nameRef = useRef("");
     const phoneRef = useRef("");
     const addrRef = useRef("");
-    const [gender, setGender] = useState("");
     const navigate = useNavigate("");
 
     function handleChange(e){
-        setGender(e.target.value);
+        setInfo({...info, gender: e.target.value});
     }
 
     async function fnAdd() {
         const name = nameRef.current.value;
+        const gender = info.gender;
         const phone = phoneRef.current.value;
         const addr = addrRef.current.value;
         try {
@@ -40,8 +40,10 @@ function Pesrson(props) {
 
     async function fnEdit() {
         const name = nameRef.current.value;
+        const gender = info.gender;
         const phone = phoneRef.current.value;
         const addr = addrRef.current.value;
+        console.log(gender);
         try {
             const res = await axios.put(`http://localhost:3100/person/${id}`, {
                 name, gender, phone, addr
